@@ -46,7 +46,7 @@ public class Application {
 	DBCollection coll; 
 	BasicDBObject doc;
 	
-	EtcdClient client = new EtcdClient(URI.create("http://54.67.47.205:4001/"));
+	EtcdClient client = new EtcdClient(URI.create("http://54.67.53.55:4001/"));
 	
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
