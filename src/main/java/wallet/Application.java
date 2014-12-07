@@ -60,27 +60,30 @@ public class Application {
     	return "Welcome to Digital-Wallet";    	
     }
     
+    //Etcd 
     @RequestMapping(value = "/counter", method=RequestMethod.GET)
-    public EtcdResult setAndGet() throws Exception
+    @ResponseBody
+    public String setAndGet() throws Exception
     {
-
-    EtcdResult result;
-
-    String key = "/counter";
-    result = this.client.get(key);
-    System.out.println("Before:"+result);
-    String v="";
-    try
-    {v=Integer.toString(Integer.parseInt(result.node.value)+1);}
-    catch(Exception e)
-    {v = "1";}
-    finally{
-    EtcdResult result1 = this.client.set(key,v);
-    result = this.client.get(key);
-    System.out.println(result);
-    }
-    return result;
-
+	EtcdResult result;
+		
+	String key = "/009425260";
+	result = this.client.get(key);
+	String value ="";
+	try
+	{
+	value = Integer.toString(Integer.parseInt(result.node.value)+1);
+	}
+	catch(Exception e)
+	{
+	value = "1";
+	}
+	finally
+	{
+	EtcdResult result1 = this.client.set(key,value);
+	result = this.client.get(key);
+	}
+	return "key =>"+result.node.key+"  count value =>"+result.node.value;
     }
     
     //creating user
